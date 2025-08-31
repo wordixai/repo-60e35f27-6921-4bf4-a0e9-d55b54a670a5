@@ -8,20 +8,165 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-   
+    --background: 220 15% 97%;
+    --foreground: 220 9% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 9% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 9% 10%;
+    --primary: 267 84% 64%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 9% 46%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 267 84% 64%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 267 84% 64%;
+    --radius: 0.5rem;
+
+    /* Game-specific colors */
+    --game-success: 120 100% 35%;
+    --game-warning: 45 100% 50%;
+    --game-error: 0 84% 60%;
+    --game-info: 210 100% 56%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(267 84% 64%) 0%, hsl(295 84% 64%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(210 100% 56%) 0%, hsl(267 84% 64%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(120 100% 35%) 0%, hsl(145 100% 40%) 100%);
+    --gradient-error: linear-gradient(135deg, hsl(0 84% 60%) 0%, hsl(15 84% 60%) 100%);
   }
 
   .dark {
-
+    --background: 220 27% 6%;
+    --foreground: 220 9% 98%;
+    --card: 220 27% 8%;
+    --card-foreground: 220 9% 98%;
+    --popover: 220 27% 8%;
+    --popover-foreground: 220 9% 98%;
+    --primary: 267 84% 64%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 27% 12%;
+    --secondary-foreground: 220 9% 60%;
+    --muted: 220 27% 12%;
+    --muted-foreground: 220 9% 60%;
+    --accent: 267 84% 64%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 27% 18%;
+    --input: 220 27% 18%;
+    --ring: 267 84% 64%;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@layer utilities {
+  .gradient-primary {
+    background: var(--gradient-primary);
   }
+  
+  .gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+  
+  .gradient-success {
+    background: var(--gradient-success);
+  }
+  
+  .gradient-error {
+    background: var(--gradient-error);
+  }
+  
+  .text-game-success {
+    color: hsl(var(--game-success));
+  }
+  
+  .text-game-warning {
+    color: hsl(var(--game-warning));
+  }
+  
+  .text-game-error {
+    color: hsl(var(--game-error));
+  }
+  
+  .text-game-info {
+    color: hsl(var(--game-info));
+  }
+  
+  .animate-bounce-gentle {
+    animation: bounce-gentle 2s infinite;
+  }
+  
+  .animate-pulse-soft {
+    animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-slide-up {
+    animation: slide-up 0.3s ease-out;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
+}
 
-  body {
-    @apply bg-background text-foreground;
+@keyframes bounce-gentle {
+  0%, 100% {
+    transform: translateY(0);
   }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
 }
